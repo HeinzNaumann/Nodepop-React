@@ -1,13 +1,11 @@
-
-import './App.css';
-
+import "./App.css";
+import PaginaAnuncios from "./components/anuncios/PaginaAnuncios";
 
 function App() {
   return (
-    <div className="App">
-     <h1> Hola Heinzy</h1>
+    <div className='App'>
+      <PaginaAnuncios />
     </div>
-
   );
 }
 
