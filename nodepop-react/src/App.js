@@ -1,18 +1,15 @@
 import "./App.css";
-import PaginaAnuncios from "./components/anuncios/PaginaAnuncios";
-
-import Button from "./components/common/button";
-
+import PaginaAnuncios from "./components/anuncios/PaginaAnuncios/PaginaAnuncios";
+import PaginaNuevoAnuncio from "./components/anuncios/PaginaNuevoAnuncio/PaginaNuevoAnuncio";
+import PaginaAnuncio from "./components/anuncios/PaginaAnuncio/PaginaAnuncio";
+import LoginPage from "./components/auth/LoginPage/LoginPage";
 function App() {
   return (
     <div className='App'>
-      <Button variant='primary' onClick={() => console.log("click")}>
-        {" "}
-        Primary{" "}
-      </Button>
-      <Button disabled>Normal </Button>
-
-      <PaginaAnuncios />
+      {/* <PaginaAnuncios />
+      <PaginaNuevoAnuncio />
+      <PaginaAnuncio /> */}
+      <LoginPage />
     </div>
   );
 }
