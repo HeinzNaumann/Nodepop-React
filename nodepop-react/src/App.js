@@ -4,8 +4,9 @@ import PaginaNuevoAnuncio from "./components/anuncios/PaginaNuevoAnuncio/PaginaN
 import PaginaAnuncio from "./components/anuncios/PaginaAnuncio/PaginaAnuncio";
 import LoginPage from "./components/auth/LoginPage/LoginPage";
 import { useState } from "react";
-function App() {
-  const [isLogged, setIsLogged] = useState(false);
+
+function App({ isInitiallyLogged }) {
+  const [isLogged, setIsLogged] = useState(isInitiallyLogged);
 
   const handleLogin = () => setIsLogged(true);
   return (
