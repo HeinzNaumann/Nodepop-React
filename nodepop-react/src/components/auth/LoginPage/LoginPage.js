@@ -1,8 +1,13 @@
 import { useState } from "react";
 import Button from "../../common/button";
+import { login } from "../service";
+import "./LoginPage.css";
+function LoginPage({ onLogin }) {
+  const [value, setValue] = useState({ email: "", password: "" });
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-function LoginPage() {
-  const [value, setValue] = useState({ username: "", password: "" });
+  const resetError = () => setError(null);
 
   const handleChange = event => {
     setValue(prevState => ({
@@ -11,27 +16,42 @@ function LoginPage() {
     }));
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     console.log(event);
     event.preventDefault();
+    setIsLoading(true);
+    resetError();
+    try {
+      // call to api - send value
+      await login(value);
+      onLogin();
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className='LoginPage'>
       <h1 className='loginPage-title'> Log in to Node Pop </h1>
       <form onSubmit={handleSubmit}>
+        <span> Introduce tu email </span>
         <input
-          type='text'
-          name='username'
-          value={value.username}
+          type='email'
+          name='email'
+          className='loginForm-field'
+          value={value.email}
           onChange={handleChange}
         ></input>
+        <span> Introduce tu contraseña </span>
         <input
           type='password'
           name='password'
           value={value.password}
           onChange={handleChange}
         ></input>
+        <span> Click para mantenerme logeado </span>
         <input
           type='checkbox'
           onChange={event => console.log(event.target.checked)}
@@ -43,11 +63,16 @@ function LoginPage() {
         <Button
           type='submit'
           variant='primary'
-          disabled={!value.username || !value.password}
+          disabled={isLoading || !value.email || !value.password}
         >
           Log in
         </Button>
       </form>
+      {error && (
+        <div onClick={resetError} className='loginPage-error'>
+          {error.message}
+        </div>
+      )}
     </div>
   );
 }

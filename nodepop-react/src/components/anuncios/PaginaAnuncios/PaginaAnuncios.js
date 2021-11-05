@@ -7,7 +7,7 @@ import "./PaginaAnuncios.css";
 
 import styles from "./AnunciosPagina.module.css";
 
-function PaginaAnuncios() {
+function PaginaAnuncios(props) {
   const [anuncios, setAnuncios] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function PaginaAnuncios() {
   }, []);
 
   return (
-    <Layout title='What`s goin on'>
+    <Layout title='What`s goin on' {...props}>
       <div className={styles.paginaAnuncios}>
         ultimos anuncios
         <ul>
