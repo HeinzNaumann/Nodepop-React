@@ -1,9 +1,9 @@
 import Layout from "../../layout/Layout";
 
-function PaginaAnuncio() {
+function PaginaAnuncio({ match }) {
   return (
     <Layout title='Pagina de anuncio'>
-      <div> Esta es la pagina de detalle de un anuncio</div>
+      <div> Esta es la pagina de detalle del anuncio </div>
     </Layout>
   );
 }

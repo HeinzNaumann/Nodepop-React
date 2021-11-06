@@ -1,13 +1,25 @@
 import { useState } from "react";
 import Button from "../../common/button";
 import { login } from "../service";
+import { AuthContextConsumer } from "../context";
 import "./LoginPage.css";
-function LoginPage({ onLogin }) {
+
+function LoginPage({ onLogin, history, location }) {
   const [value, setValue] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [checked, setChecked] = useState(false);
+
   const resetError = () => setError(null);
+
+  const handleCheck = () => {
+    if (checked === true) {
+      setChecked(true);
+    } else {
+      setChecked(false);
+    }
+  };
 
   const handleChange = event => {
     setValue(prevState => ({
@@ -24,10 +36,12 @@ function LoginPage({ onLogin }) {
     try {
       // call to api - send value
       await login(value);
+      setIsLoading(false);
       onLogin();
+      const { from } = location.state || { from: { pathname: "/" } };
+      history.push(from);
     } catch (error) {
       setError(error);
-    } finally {
       setIsLoading(false);
     }
   };
@@ -54,7 +68,9 @@ function LoginPage({ onLogin }) {
         <span> Click para mantenerme logeado </span>
         <input
           type='checkbox'
-          onChange={event => console.log(event.target.checked)}
+          onChange={() => {
+            handleCheck();
+          }}
         ></input>
         <input
           type='file'
@@ -77,4 +93,10 @@ function LoginPage({ onLogin }) {
   );
 }
 
-export default LoginPage;
+const ConnectedLoginPage = props => (
+  <AuthContextConsumer>
+    {auth => <LoginPage onLogin={auth.handleLogin} {...props} />}
+  </AuthContextConsumer>
+);
+
+export default ConnectedLoginPage;
