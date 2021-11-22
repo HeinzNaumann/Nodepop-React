@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const accentColor = "rgb(29, 161, 242)";
+const accentColor = "rgb(216, 23, 23)";
 const Button = styled.button`
   align-items: center;
   background-color: ${props =>
     props.variant === "primary" ? accentColor : "white"};
-  border-radius: 9999px;
+  border-radius: 10px;
   border-style: solid;
   border-width: 1px;
   border-color: ${accentColor};
@@ -26,8 +26,8 @@ const Button = styled.button`
   &:hover {
     background-color: ${props =>
       props.variant === "primary"
-        ? "rgb(26, 145, 218)"
-        : "rgba(29, 161, 242, 0.1)"};
+        ? "rgb(242, 207, 29)"
+        : "rgba(242, 212, 56, 0.1)"};
   }
 `;
 const ButtonPrimary = props => <Button variant='primary' {...props} />;

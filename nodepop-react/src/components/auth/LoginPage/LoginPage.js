@@ -5,21 +5,15 @@ import { AuthContextConsumer } from "../context";
 import "./LoginPage.css";
 
 function LoginPage({ onLogin, history, location }) {
-  const [value, setValue] = useState({ email: "", password: "" });
+  const [value, setValue] = useState({
+    email: "",
+    password: "",
+    mem: false,
+  });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [checked, setChecked] = useState(false);
-
   const resetError = () => setError(null);
-
-  const handleCheck = () => {
-    if (checked === true) {
-      setChecked(true);
-    } else {
-      setChecked(false);
-    }
-  };
 
   const handleChange = event => {
     setValue(prevState => ({
@@ -29,7 +23,6 @@ function LoginPage({ onLogin, history, location }) {
   };
 
   const handleSubmit = async event => {
-    console.log(event);
     event.preventDefault();
     setIsLoading(true);
     resetError();
@@ -68,13 +61,9 @@ function LoginPage({ onLogin, history, location }) {
         <span> Click para mantenerme logeado </span>
         <input
           type='checkbox'
-          onChange={() => {
-            handleCheck();
-          }}
-        ></input>
-        <input
-          type='file'
-          onChange={event => console.log(event.target.files)}
+          name='mem'
+          checked={value.mem}
+          onChange={handleChange}
         ></input>
         <Button
           type='submit'

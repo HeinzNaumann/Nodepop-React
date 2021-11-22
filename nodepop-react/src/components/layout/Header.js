@@ -3,6 +3,7 @@ import classNames from "classnames";
 import Button from "../common/button";
 import AuthContext from "../auth/context";
 import { Link, NavLink } from "react-router-dom";
+import ConfirmButton from "../common/ConfirmButton";
 
 import { ReactComponent as Icon } from "../../assets/nodepop.svg";
 function Header({ className }) {
@@ -15,11 +16,17 @@ function Header({ className }) {
         </div>
       </Link>
       <nav className='header-nav'>
-        <NavLink to='/adverts/new'>Nuevo Anuncio </NavLink>
+        <NavLink className='myButton2' to='/adverts/new'>
+          Nuevo Anuncio{" "}
+        </NavLink>
         {isLogged ? (
-          <Button className='header-button' onClick={handleLogout}>
+          <ConfirmButton
+            confirmation='Are you sure?'
+            className='myButton'
+            onConfirm={handleLogout}
+          >
             Log Out
-          </Button>
+          </ConfirmButton>
         ) : (
           <Button
             variant='primary'

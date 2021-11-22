@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import PaginaAnuncios from "./components/anuncios/PaginaAnuncios/PaginaAnuncios";
 import PaginaNuevoAnuncio from "./components/anuncios/PaginaNuevoAnuncio/PaginaNuevoAnuncio";
-import PaginaAnuncio from "./components/anuncios/PaginaAnuncio/PaginaAnuncio";
+import PaginaAnuncio from "./components/anuncios/PaginaAnuncio";
 import { LoginPage, PrivateRoute } from "./components/auth";
 import { useState } from "react";
 import { logout } from "./components/auth/service";
@@ -26,9 +26,6 @@ function App({ isInitiallyLogged }) {
     <Router>
       <AuthContextProvider value={{ isLogged, handleLogout, handleLogin }}>
         <div className='App'>
-          {/* 
-      <PaginaNuevoAnuncio />
-      <PaginaAnuncio /> */}
           <Switch>
             <Route path='/login'>
               {routeProps => <LoginPage {...routeProps} />}
