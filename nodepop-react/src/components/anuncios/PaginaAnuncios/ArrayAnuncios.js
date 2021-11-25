@@ -5,13 +5,24 @@ import { ListaVacia } from "./PaginaAnuncios";
 
 import styles from "./AnunciosPagina.module.css";
 
-const ArrayAnuncio = ({ anuncios }) => {
+const ArrayAnuncio = ({ anuncios, valueName, valueApellido }) => {
+  var filtrados = anuncios.filter(anuncio => {
+    return anuncio.name === valueName;
+  });
+
+  if (filtrados.length === 0) {
+    var filtrados = anuncios.filter(anuncio => {
+      return anuncio;
+    });
+  }
+
+  console.log(filtrados);
   return (
     <Fragment>
       <div className={styles.paginaAnuncios}>
         {anuncios.length ? (
           <ul className='contenedor-anuncios'>
-            {anuncios.map(anuncio => (
+            {filtrados.map(anuncio => (
               <li className='listado-anuncios' key={anuncio.id}>
                 <Link to={`/adverts/${anuncio.id}`}>
                   <div className='bloque-anuncio'>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { getUltimoAnuncio, deleteAnuncio } from "../service";
-import FilterForm from "../PaginaAnuncios/FilterForm";
 
 import ConfirmButton from "../../common/ConfirmButton";
 
